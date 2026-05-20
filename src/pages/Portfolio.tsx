@@ -26,9 +26,9 @@ const projects: Project[] = [
     titleEn: '1. Excel & Google Sheets',
     levelEs: 'Básico → Avanzado',
     levelEn: 'Basic → Advanced',
-    descEs: 'Análisis de ventas con tablas dinámicas, VBA, Python + Indicadores de ventas + Registro interactivo de asistencia',
-    descEn: 'Sales analysis with pivot tables, VBA, Python + Sales KPIs + Interactive attendance tracker',
-    tags: ['.xlsx', '.vba', '.py', 'Sheets', 'KPIs', 'Asistencia'],
+    descEs: 'Análisis de ventas con tablas dinámicas, VBA, Python + Indicadores, Ratios financieros, Dashboard + Registro de asistencia',
+    descEn: 'Sales analysis with pivot tables, VBA, Python + KPIs, Financial ratios, Dashboard + Attendance tracker',
+    tags: ['.xlsx', '.vba', '.py', 'Sheets', 'KPIs', 'Ratios', 'Dashboard', 'Asistencia'],
     href: '/proyectos/Excel/',
     color: 'emerald',
     files: [
@@ -36,6 +36,8 @@ const projects: Project[] = [
       { name: 'macro_actualizar.vba', path: '/proyectos/Excel/macro_actualizar.vba' },
       { name: 'generar_excel.py', path: '/proyectos/Excel/generar_excel.py' },
       { name: 'Indicadores_de_Ventas.xlsx', path: '/proyectos/Excel/Indicadores_de_Ventas.xlsx' },
+      { name: 'analisis-ratios-financieros.xlsx', path: '/proyectos/Excel/analisis-ratios-financieros.xlsx' },
+      { name: 'Dashboard_financiero.xlsx', path: '/proyectos/Excel/Dashboard_financiero.xlsx' },
     ],
     links: [
       {
