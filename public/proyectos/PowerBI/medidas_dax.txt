@@ -1,0 +1,94 @@
+============================================================
+FÓRMULAS DAX — Dashboard de Ventas
+Copiar y pegar en Power BI (Modelado → Nueva medida)
+============================================================
+
+--- KPI PRINCIPALES ---
+
+Total Ventas = SUMX(ventas, ventas[Cantidad] * ventas[PrecioUnitario])
+
+Transacciones = COUNTROWS(ventas)
+
+Clientes Únicos = DISTINCTCOUNT(ventas[Cliente])
+
+Ticket Promedio = DIVIDE([Total Ventas], [Transacciones], 0)
+
+--- COMPARATIVAS TEMPORALES ---
+
+Ventas Año Anterior = 
+CALCULATE(
+    [Total Ventas],
+    SAMEPERIODLASTYEAR(Calendario[Date])
+)
+
+Crecimiento YoY = 
+DIVIDE(
+    [Total Ventas] - [Ventas Año Anterior],
+    [Ventas Año Anterior],
+    0
+)
+
+Ventas Mes Anterior = 
+CALCULATE(
+    [Total Ventas],
+    PREVIOUSMONTH(Calendario[Date])
+)
+
+Crecimiento MoM = 
+DIVIDE(
+    [Total Ventas] - [Ventas Mes Anterior],
+    [Ventas Mes Anterior],
+    0
+)
+
+--- RANKINGS ---
+
+Top Cliente = 
+TOPN(1, VALUES(ventas[Cliente]), [Total Ventas], DESC)
+
+Top Producto = 
+TOPN(1, VALUES(ventas[Producto]), [Total Ventas], DESC)
+
+Ranking Clientes = 
+RANKX(ALL(ventas[Cliente]), [Total Ventas], , DESC, Dense)
+
+--- POR REGIÓN ---
+
+Ventas Norte = 
+CALCULATE([Total Ventas], ventas[Region] = "Norte")
+
+Ventas Centro = 
+CALCULATE([Total Ventas], ventas[Region] = "Centro")
+
+Ventas Sur = 
+CALCULATE([Total Ventas], ventas[Region] = "Sur")
+
+% Ventas Norte = DIVIDE([Ventas Norte], [Total Ventas], 0)
+
+--- ACUMULADOS ---
+
+Ventas YTD = 
+TOTALYTD([Total Ventas], Calendario[Date])
+
+Ventas Acumuladas = 
+CALCULATE(
+    [Total Ventas],
+    FILTER(
+        ALL(Calendario),
+        Calendario[Date] <= MAX(Calendario[Date])
+    )
+)
+
+--- ANÁLISIS AVANZADO ---
+
+Productividad por Cliente = 
+DIVIDE([Total Ventas], [Clientes Únicos], 0)
+
+% Crecimiento vs Objetivo = 
+DIVIDE([Total Ventas], 50000, 0) -- Objetivo: $50,000
+
+Días con Ventas = 
+CALCULATE(
+    DISTINCTCOUNT(ventas[Fecha]),
+    ventas[Cantidad] > 0
+)
