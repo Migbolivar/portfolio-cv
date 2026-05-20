@@ -26,15 +26,16 @@ const projects: Project[] = [
     titleEn: '1. Excel & Google Sheets',
     levelEs: 'Básico → Avanzado',
     levelEn: 'Basic → Advanced',
-    descEs: 'Análisis de ventas con tablas dinámicas, VBA, Python + Registro interactivo de asistencia',
-    descEn: 'Sales analysis with pivot tables, VBA, Python + Interactive attendance tracker',
-    tags: ['.xlsx', '.vba', '.py', 'Sheets', 'Asistencia'],
+    descEs: 'Análisis de ventas con tablas dinámicas, VBA, Python + Indicadores de ventas + Registro interactivo de asistencia',
+    descEn: 'Sales analysis with pivot tables, VBA, Python + Sales KPIs + Interactive attendance tracker',
+    tags: ['.xlsx', '.vba', '.py', 'Sheets', 'KPIs', 'Asistencia'],
     href: '/proyectos/Excel/',
     color: 'emerald',
     files: [
       { name: 'ventas_reporte.xlsx', path: '/proyectos/Excel/ventas_reporte.xlsx' },
       { name: 'macro_actualizar.vba', path: '/proyectos/Excel/macro_actualizar.vba' },
       { name: 'generar_excel.py', path: '/proyectos/Excel/generar_excel.py' },
+      { name: 'Indicadores_de_Ventas.xlsx', path: '/proyectos/Excel/Indicadores_de_Ventas.xlsx' },
     ],
     links: [
       {
