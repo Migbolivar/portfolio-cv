@@ -11,6 +11,8 @@ export default function CV() {
   };
 
   const certs = [
+    { name: 'Licenciado en Administración', pdf: '/certificados/licenciado-administracion.pdf', thumb: '/certificados/licenciado-administracion.png' },
+    { name: 'Diplomado en Negociaciones Internacionales', pdf: '/certificados/diplomado-negociaciones-internacionales.pdf', thumb: '/certificados/diplomado-negociaciones-internacionales.png' },
     { name: 'Data Analysis Python & AI (DS4B)', pdf: '/certificados/data-analysis-python-ai.pdf', thumb: '/certificados/data-analysis-python-ai.png' },
     { name: 'Web Development (UneWeb)', pdf: '/certificados/desarrollo-web-uneweb.pdf', thumb: '/certificados/desarrollo-web-uneweb.png' },
     { name: 'Claude AI (Anthropic)', pdf: '/certificados/claude-ai-anthropic.pdf', thumb: '/certificados/claude-ai-anthropic.png' },
