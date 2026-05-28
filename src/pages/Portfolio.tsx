@@ -134,14 +134,15 @@ const projects: Project[] = [
     titleEn: '6. Python — Full Pipeline',
     levelEs: 'Intermedio → Avanzado',
     levelEn: 'Intermediate → Advanced',
-    descEs: 'Análisis, visualizaciones, ML e informe PDF profesional',
-    descEn: 'Analysis, visualizations, ML and professional PDF report',
-    tags: ['.py', '.pdf', '.png', 'scikit-learn'],
+    descEs: 'Análisis, visualizaciones, ML e informe PDF profesional + Predicción de préstamos',
+    descEn: 'Analysis, visualizations, ML and professional PDF report + Loan Prediction',
+    tags: ['.py', '.pdf', '.png', '.ipynb', 'scikit-learn', 'ML', 'Random Forest'],
     href: '/proyectos/Python/',
     color: 'violet',
     files: [
       { name: 'analisis_ventas.py', path: '/proyectos/Python/analisis_ventas.py' },
       { name: 'informe_ventas.pdf', path: '/proyectos/Python/informe_ventas.pdf' },
+      { name: 'loan_approval_prediction.zip (notebook + datos)', path: '/proyectos/Python/Loan_approval_Prediction_mejorado.zip' },
     ],
   },
 ];
