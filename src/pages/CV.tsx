@@ -13,12 +13,12 @@ export default function CV() {
   const certs = [
     { name: 'Licenciado en Administración', pdf: '/certificados/licenciado-administracion.pdf', thumb: '/certificados/licenciado-administracion.png' },
     { name: 'Diplomado en Negociaciones Internacionales', pdf: '/certificados/diplomado-negociaciones-internacionales.pdf', thumb: '/certificados/diplomado-negociaciones-internacionales.png' },
-    { name: 'Data Analysis Python & AI (DS4B)', pdf: '/certificados/data-analysis-python-ai.pdf', thumb: '/certificados/data-analysis-python-ai.png' },
+    { name: "Especialista en Indicadores de Gestión KPI's", pdf: '/certificados/data-analysis-python-ai.pdf', thumb: '/certificados/data-analysis-python-ai.png' },
     { name: 'Web Development (UneWeb)', pdf: '/certificados/desarrollo-web-uneweb.pdf', thumb: '/certificados/desarrollo-web-uneweb.png' },
     { name: 'Claude AI (Anthropic)', pdf: '/certificados/claude-ai-anthropic.pdf', thumb: '/certificados/claude-ai-anthropic.png' },
-    { name: 'Especialista en Indicadores de Gestión KPIs', pdf: '/certificados/especialista-kpis.pdf', thumb: '/certificados/especialista-kpis.png' },
-    { name: 'Power BI Básico', pdf: '/certificados/power-bi-basico.pdf', thumb: '/certificados/power-bi-basico.png' },
-    { name: 'Data Scientist (DS4B)', pdf: '/certificados/data-scientist-ds4b.pdf', thumb: '/certificados/data-scientist-ds4b.png' },
+    { name: 'Power BI Básico', pdf: '/certificados/especialista-kpis.pdf', thumb: '/certificados/especialista-kpis.png' },
+    { name: 'Claude Code in Action', pdf: '/certificados/power-bi-basico.pdf', thumb: '/certificados/power-bi-basico.png' },
+    { name: 'Data Analisis Science con IA & Python', pdf: '/certificados/data-scientist-ds4b.pdf', thumb: '/certificados/data-scientist-ds4b.png' },
     { name: 'Introducción a la Programación', pdf: '/certificados/introduccion-programacion.pdf', thumb: '/certificados/introduccion-programacion.png' },
   ];
 
