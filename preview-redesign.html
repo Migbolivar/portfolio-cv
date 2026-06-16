@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Miguel Bolivar — Preview Rediseño</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #14141f;
+    --surface-hover: #1a1a2a;
+    --border: #1e1e32;
+    --text: #e4e4ec;
+    --text-muted: #8888a0;
+    --accent: #6366f1;
+    --accent-glow: rgba(99, 102, 241, 0.15);
+    --amber: #f59e0b;
+    --emerald: #10b981;
+    --pink: #ec4899;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Geist', system-ui, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  code, .mono { font-family: 'Geist Mono', monospace; }
+
+  /* ─── Scroll Animation System ─── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-delay-1 { transition-delay: 0.05s; }
+  .reveal-delay-2 { transition-delay: 0.10s; }
+  .reveal-delay-3 { transition-delay: 0.15s; }
+  .reveal-delay-4 { transition-delay: 0.20s; }
+  .reveal-delay-5 { transition-delay: 0.25s; }
+  .reveal-delay-6 { transition-delay: 0.30s; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; transition: none; }
+  }
+
+  /* ─── Layout ─── */
+  .container { max-width: 1100px; margin: 0 auto; padding: 0 1.5rem; }
+
+  /* ─── Nav ─── */
+  nav {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1rem 1.5rem; max-width: 1100px; margin: 0 auto;
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-brand { font-weight: 700; font-size: 1.15rem; display: flex; align-items: center; gap: 0.5rem; color: var(--text); text-decoration: none; }
+  .nav-links { display: flex; align-items: center; gap: 0.5rem; }
+  .btn-lang {
+    padding: 0.35rem 0.7rem; border-radius: 0.5rem; font-size: 0.75rem; font-weight: 600;
+    background: var(--surface); color: var(--text-muted); border: 1px solid var(--border);
+    cursor: pointer; transition: all 0.2s; font-family: 'Geist', sans-serif;
+  }
+  .btn-lang:hover { background: var(--surface-hover); color: var(--text); }
+  .btn-portfolio {
+    padding: 0.5rem 1rem; border-radius: 0.75rem; font-size: 0.85rem; font-weight: 600;
+    background: var(--accent); color: white; border: none; cursor: pointer;
+    transition: all 0.2s; text-decoration: none; display: inline-flex; align-items: center; gap: 0.35rem;
+    font-family: 'Geist', sans-serif;
+  }
+  .btn-portfolio:hover { filter: brightness(1.1); transform: translateY(-1px); box-shadow: 0 4px 20px var(--accent-glow); }
+
+  /* ─── Hero ─── */
+  .hero-card {
+    background: var(--surface); border-radius: 1.5rem; padding: 2.5rem;
+    border: 1px solid var(--border); margin-top: 1.5rem;
+    display: flex; gap: 2rem; align-items: flex-start;
+  }
+  .hero-avatar {
+    width: 100px; height: 100px; border-radius: 50%; overflow: hidden;
+    flex-shrink: 0; border: 2px solid var(--border);
+    box-shadow: 0 0 30px var(--accent-glow);
+  }
+  .hero-avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .hero-info h1 { font-size: 2rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.2rem; }
+  .hero-role {
+    font-size: 1.1rem; font-weight: 600; color: var(--accent); margin-bottom: 0.3rem;
+    /* NO gradient text — solid accent color per impeccable */
+  }
+  .hero-meta { color: var(--text-muted); font-size: 0.9rem; display: flex; align-items: center; gap: 0.3rem; }
+  .badge-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+  .badge {
+    padding: 0.35rem 0.8rem; border-radius: 2rem; font-size: 0.8rem; font-weight: 500;
+    display: inline-flex; align-items: center; gap: 0.3rem;
+  }
+  .badge-blue { background: rgba(99,102,241,0.12); color: #818cf8; }
+  .badge-green { background: rgba(16,185,129,0.12); color: #34d399; }
+  .badge-purple { background: rgba(168,85,247,0.12); color: #a78bfa; }
+  .badge-red { background: rgba(239,68,68,0.12); color: #f87171; border: 1px solid rgba(239,68,68,0.2); }
+
+  /* ─── Sections ─── */
+  .section-title {
+    font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 0.08em; color: var(--text-muted); margin-bottom: 1rem;
+  }
+  .card {
+    background: var(--surface); border-radius: 1rem; padding: 1.5rem;
+    border: 1px solid var(--border); transition: border-color 0.2s, background 0.2s;
+  }
+  .card:hover { border-color: rgba(99,102,241,0.3); background: var(--surface-hover); }
+  /* Varied cards — not all identical */
+  .card-accent { border-left: none; background: linear-gradient(135deg, var(--surface) 0%, rgba(99,102,241,0.05) 100%); }
+  .card-amber { background: linear-gradient(135deg, var(--surface) 0%, rgba(245,158,11,0.05) 100%); }
+
+  /* ─── Skills ─── */
+  .skill-pill {
+    padding: 0.3rem 0.7rem; border-radius: 0.5rem; font-size: 0.78rem; font-weight: 500;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .skill-pill:hover { transform: translateY(-2px); box-shadow: 0 2px 12px rgba(99,102,241,0.2); }
+  .skill-default { background: rgba(255,255,255,0.04); color: var(--text-muted); }
+  .skill-ai { background: rgba(168,85,247,0.1); color: #c4b5fd; }
+  .skill-infra { background: rgba(59,130,246,0.1); color: #93c5fd; }
+
+  /* ─── Experience (NO side-stripe) ─── */
+  .exp-item {
+    padding: 1rem 1.25rem; border-radius: 0.75rem; position: relative;
+    border: 1px solid var(--border); background: var(--surface);
+    transition: border-color 0.2s;
+  }
+  .exp-item:hover { border-color: rgba(99,102,241,0.3); }
+  .exp-item + .exp-item { margin-top: 0.75rem; }
+  .exp-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem; }
+  .exp-role { font-weight: 600; font-size: 0.95rem; }
+  .exp-company { font-size: 0.8rem; color: var(--text-muted); }
+  .exp-period {
+    font-size: 0.7rem; padding: 0.2rem 0.6rem; border-radius: 2rem;
+    background: rgba(99,102,241,0.1); color: #a5b4fc; font-weight: 500; white-space: nowrap;
+  }
+  .exp-dots { list-style: none; }
+  .exp-dots li {
+    font-size: 0.82rem; color: var(--text-muted); padding: 0.2rem 0;
+    display: flex; align-items: flex-start; gap: 0.5rem;
+  }
+  .exp-dots li::before {
+    content: ''; width: 5px; height: 5px; border-radius: 50%;
+    background: var(--accent); margin-top: 0.55rem; flex-shrink: 0;
+  }
+
+  /* ─── Certificates ─── */
+  .cert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 0.75rem; }
+  .cert-item {
+    background: var(--surface); border-radius: 0.75rem; overflow: hidden;
+    border: 1px solid var(--border); transition: all 0.25s; text-decoration: none; color: inherit;
+    display: block;
+  }
+  .cert-item:hover { border-color: var(--amber); transform: translateY(-3px); box-shadow: 0 8px 25px rgba(245,158,11,0.1); }
+  .cert-thumb { aspect-ratio: 1.4; overflow: hidden; background: #1a1a2e; display: flex; align-items: center; justify-content: center; }
+  .cert-thumb-inner {
+    width: 100%; height: 100%; background: linear-gradient(135deg, #1e1b4b 0%, #312e81 50%, #1e1b4b 100%);
+    display: flex; align-items: center; justify-content: center; color: #818cf8; font-size: 1.5rem; font-weight: 700;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .cert-item:hover .cert-thumb-inner { transform: scale(1.08); }
+  .cert-label { padding: 0.5rem 0.6rem; font-size: 0.7rem; text-align: center; color: var(--text-muted); font-weight: 500; }
+
+  /* ─── Portfolio Link Card ─── */
+  .portfolio-card {
+    background: linear-gradient(135deg, var(--accent) 0%, #7c3aed 100%);
+    border-radius: 1rem; padding: 1.25rem; color: white; text-decoration: none;
+    display: flex; align-items: center; gap: 1rem; transition: all 0.25s;
+  }
+  .portfolio-card:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(99,102,241,0.3); }
+  .portfolio-icon {
+    width: 44px; height: 44px; border-radius: 0.75rem; background: rgba(255,255,255,0.2);
+    display: flex; align-items: center; justify-content: center; font-size: 1.2rem;
+  }
+  .portfolio-label { font-weight: 600; font-size: 0.9rem; }
+  .portfolio-tags { font-size: 0.72rem; opacity: 0.8; margin-top: 0.15rem; }
+  .portfolio-arrow { margin-left: auto; font-size: 1.2rem; transition: transform 0.25s; }
+  .portfolio-card:hover .portfolio-arrow { transform: translateX(3px); }
+
+  /* ─── Footer ─── */
+  footer {
+    text-align: center; padding: 1.5rem; margin-top: 2rem;
+    border-top: 1px solid var(--border); color: var(--text-muted); font-size: 0.8rem;
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+
+  /* ─── Grid ─── */
+  .main-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 1.5rem; margin-top: 1.5rem; }
+  .col-space > * + * { margin-top: 1rem; }
+
+  @media (max-width: 768px) {
+    .main-grid { grid-template-columns: 1fr; }
+    .hero-card { flex-direction: column; align-items: center; text-align: center; padding: 1.5rem; }
+    .hero-info h1 { font-size: 1.5rem; }
+  }
+
+  /* ─── Watermark ─── */
+  .preview-banner {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+    background: linear-gradient(135deg, var(--accent), #7c3aed);
+    color: white; text-align: center; padding: 0.4rem; font-size: 0.7rem; font-weight: 600;
+    letter-spacing: 0.05em;
+  }
+  body { padding-top: 2rem; }
+</style>
+</head>
+<body>
+
+<div class="preview-banner">🔍 PREVIEW — Nuevo Diseño Propuesto (Geist font · solid colors · micro-animations · no side-stripes)</div>
+
+<!-- Nav -->
+<nav class="reveal">
+  <a href="#" class="nav-brand">📊 Miguel Bolivar</a>
+  <div class="nav-links">
+    <button class="btn-lang">EN</button>
+    <a href="#" class="btn-portfolio">📁 Portafolio</a>
+  </div>
+</nav>
+
+<div class="container">
+
+  <!-- Hero -->
+  <div class="hero-card reveal reveal-delay-1">
+    <div class="hero-avatar">
+      <div style="width:100%;height:100%;background:linear-gradient(135deg,#6366f1,#a78bfa);display:flex;align-items:center;justify-content:center;font-size:2.2rem;">MB</div>
+    </div>
+    <div class="hero-info">
+      <h1>Miguel Angel Bolivar Mella</h1>
+      <p class="hero-role">Data Analyst & AI Automation Specialist</p>
+      <p class="hero-meta">📍 Caracas, Venezuela</p>
+      <div class="badge-row">
+        <a href="#" class="badge badge-blue">🔗 LinkedIn</a>
+        <span class="badge badge-green">🌐 Remote · Open to Work</span>
+        <span class="badge badge-purple">🗣️ ES Nativo · EN B1</span>
+        <button class="badge badge-red" style="cursor:pointer">📥 Descargar CV (PDF)</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main grid -->
+  <div class="main-grid">
+
+    <!-- LEFT COLUMN -->
+    <div class="col-space">
+
+      <div class="card reveal reveal-delay-2">
+        <div class="section-title">💼 Resumen Profesional</div>
+        <p style="font-size:0.85rem;color:var(--text-muted);line-height:1.7;">
+          Administrador de Empresas con más de <strong style="color:var(--text)">10 años de experiencia</strong> en análisis financiero, 
+          generación de reportes ejecutivos, KPIs y dashboards de negocio. Data Analyst autodidacta en formación, 
+          apasionado por transformar datos en decisiones estratégicas. Uso de herramientas de IA, alojamiento de 
+          herramientas IA open source en servidor propio y en localhost.
+        </p>
+      </div>
+
+      <div class="card reveal reveal-delay-3">
+        <div class="section-title">🎓 Educación</div>
+        <p style="font-weight:600;font-size:0.9rem;">Licenciado en Administración</p>
+        <p style="font-size:0.8rem;color:var(--text-muted);">Universidad Santa María, Caracas — 2012</p>
+        <p style="font-weight:600;font-size:0.9rem;margin-top:0.8rem;">Diplomado en Negociaciones Internacionales</p>
+        <p style="font-size:0.8rem;color:var(--text-muted);">Universidad Alejandro Humboldt, Caracas — 2014</p>
+      </div>
+
+      <div class="card reveal reveal-delay-4">
+        <div class="section-title">🌍 Idiomas</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:0.3rem 0;">
+          <span style="font-size:0.9rem;">Español</span>
+          <span class="badge badge-green" style="font-size:0.7rem;">Nativo</span>
+        </div>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:0.3rem 0;">
+          <span style="font-size:0.9rem;">English</span>
+          <span class="badge badge-blue" style="font-size:0.7rem;">B1 Intermedio</span>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div class="col-space">
+
+      <!-- Skills -->
+      <div class="card card-accent reveal reveal-delay-2">
+        <div class="section-title">🛠️ Habilidades Técnicas</div>
+        <div style="margin-bottom:1rem;">
+          <p style="font-weight:600;font-size:0.85rem;margin-bottom:0.5rem;">Data & BI</p>
+          <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
+            <span class="skill-pill skill-default">Power BI</span>
+            <span class="skill-pill skill-default">Tableau</span>
+            <span class="skill-pill skill-default">Looker Studio</span>
+            <span class="skill-pill skill-default">SQL</span>
+            <span class="skill-pill skill-default">Python (Pandas, NumPy, Matplotlib)</span>
+            <span class="skill-pill skill-default">ETL Pipelines</span>
+            <span class="skill-pill skill-default">KPIs</span>
+            <span class="skill-pill skill-default">Dashboards</span>
+          </div>
+        </div>
+        <div style="margin-bottom:1rem;">
+          <p style="font-weight:600;font-size:0.85rem;margin-bottom:0.5rem;">AI & Automatización</p>
+          <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
+            <span class="skill-pill skill-ai">N8N</span>
+            <span class="skill-pill skill-ai">Flowise</span>
+            <span class="skill-pill skill-ai">Claude Code</span>
+            <span class="skill-pill skill-ai">Autonomous AI Agents</span>
+            <span class="skill-pill skill-ai">Self-hosted Linux</span>
+            <span class="skill-pill skill-ai">Open-source AI</span>
+          </div>
+        </div>
+        <div>
+          <p style="font-weight:600;font-size:0.85rem;margin-bottom:0.5rem;">Infraestructura & Remote</p>
+          <div style="display:flex;flex-wrap:wrap;gap:0.4rem;">
+            <span class="skill-pill skill-infra">Bitwise SSH</span>
+            <span class="skill-pill skill-infra">Linux Servers</span>
+            <span class="skill-pill skill-infra">Remote Workstations</span>
+            <span class="skill-pill skill-infra">Notion</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Experience — NO SIDE-STRIPE BORDERS -->
+      <div class="card card-amber reveal reveal-delay-3">
+        <div class="section-title">📈 Experiencia Profesional</div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <div>
+              <div class="exp-role">Data & AI Automation (Proyectos)</div>
+              <div class="exp-company">Freelance / Self-hosted — Remote</div>
+            </div>
+            <span class="exp-period">2025 – Present</span>
+          </div>
+          <ul class="exp-dots">
+            <li>Formación autodidacta intensiva en Data Analysis: Python, SQL, Power BI, Tableau y Looker Studio</li>
+            <li>Despliegue de infraestructura AI open-source en servidor propio Linux</li>
+            <li>Creación de agentes autónomos con Flowise, n8n y Claude Code</li>
+            <li>Portafolio con 7 proyectos publicados</li>
+          </ul>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <div>
+              <div class="exp-role">Administrador & Analista de Datos Financieros</div>
+              <div class="exp-company">Frutos Vivas — Caracas, Venezuela</div>
+            </div>
+            <span class="exp-period">2017 – 2023</span>
+          </div>
+          <ul class="exp-dots">
+            <li>Administración general con enfoque en análisis financiero</li>
+            <li>Estados de resultados, flujo de caja y proyecciones</li>
+            <li>KPIs y dashboards de negocio</li>
+          </ul>
+        </div>
+
+        <div class="exp-item">
+          <div class="exp-header">
+            <div>
+              <div class="exp-role">Administrador & BI Analyst</div>
+              <div class="exp-company">Interdes Inspecciones & Construcciones — Caracas</div>
+            </div>
+            <span class="exp-period">2014 – 2017</span>
+          </div>
+          <ul class="exp-dots">
+            <li>Gestión administrativa y financiera de proyectos de construcción</li>
+            <li>Reportes de indicadores y control presupuestario</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Certificates -->
+      <div class="card reveal reveal-delay-4">
+        <div class="section-title">📜 Certificaciones</div>
+        <div class="cert-grid">
+          <a href="#" class="cert-item"><div class="cert-thumb"><div class="cert-thumb-inner">📜</div></div><div class="cert-label">Licenciado en Administración</div></a>
+          <a href="#" class="cert-item"><div class="cert-thumb"><div class="cert-thumb-inner">🌐</div></div><div class="cert-label">Diplomado Negociaciones Int.</div></a>
+          <a href="#" class="cert-item"><div class="cert-thumb"><div class="cert-thumb-inner">📊</div></div><div class="cert-label">Especialista en KPIs</div></a>
+          <a href="#" class="cert-item"><div class="cert-thumb"><div class="cert-thumb-inner">💻</div></div><div class="cert-label">Web Development</div></a>
+          <a href="#" class="cert-item"><div class="cert-thumb"><div class="cert-thumb-inner">🤖</div></div><div class="cert-label">Claude AI (Anthropic)</div></a>
+          <a href="#" class="cert-item"><div class="cert-thumb"><div class="cert-thumb-inner">📈</div></div><div class="cert-label">Power BI Básico</div></a>
+        </div>
+      </div>
+
+      <!-- Portfolio Link — no gradient text, just solid color card -->
+      <a href="#" class="portfolio-card reveal reveal-delay-5">
+        <div class="portfolio-icon">📊</div>
+        <div>
+          <div class="portfolio-label">📁 Mis Proyectos</div>
+          <div class="portfolio-tags">Excel · SQL · Power BI · Tableau · Looker Studio · Python</div>
+        </div>
+        <span class="portfolio-arrow">→</span>
+      </a>
+
+    </div>
+  </div>
+
+</div>
+
+<footer class="reveal">
+  © 2026 Miguel Angel Bolivar Mella · Caracas, Venezuela ·
+  <a href="#">LinkedIn</a>
+</footer>
+
+<script>
+  // Intersection Observer for scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -30px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>

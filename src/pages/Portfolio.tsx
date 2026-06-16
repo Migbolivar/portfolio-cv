@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useLang } from '../context/LangContext';
+import WeatherDashboard from '../components/WeatherDashboard';
+import FeatureEngineeringReport from '../components/FeatureEngineeringReport';
 
 interface Project {
   id: number;
@@ -134,16 +136,34 @@ const projects: Project[] = [
     titleEn: '6. Python — Full Pipeline',
     levelEs: 'Intermedio → Avanzado',
     levelEn: 'Intermediate → Advanced',
-    descEs: 'Análisis, visualizaciones, ML e informe PDF + Predicción de préstamos + Análisis de ventas',
-    descEn: 'Analysis, visualizations, ML and PDF report + Loan Prediction + Sales Analysis',
-    tags: ['.py', '.pdf', '.png', '.ipynb', 'scikit-learn', 'ML', 'Matplotlib', 'Pandas'],
+    descEs: 'Análisis, visualizaciones, ML e informe PDF + Predicción de préstamos + Ventas + Web Scraping + Dashboard Clima en Vivo',
+    descEn: 'Analysis, visualizations, ML and PDF report + Loan Prediction + Sales + Web Scraping + Live Weather Dashboard',
+    tags: ['.py', '.pdf', '.png', '.ipynb', 'scikit-learn', 'ML', 'Matplotlib', 'Pandas', 'BeautifulSoup', 'API', 'Dashboard'],
     href: '/proyectos/Python/',
     color: 'violet',
     files: [
       { name: 'analisis_ventas.py', path: '/proyectos/Python/analisis_ventas.py' },
       { name: 'informe_ventas.pdf', path: '/proyectos/Python/informe_ventas.pdf' },
-      { name: 'loan_approval_prediction.zip (notebook + datos)', path: '/proyectos/Python/Loan_approval_Prediction_mejorado.zip' },
-      { name: 'analisis_ventas_productos.zip (notebook + datos)', path: '/proyectos/Python/Active_Product_Sales_Analysis_mejorado.zip' },
+      { name: 'clima_caracas_dashboard.zip (Dashboard Interactivo)', path: '/proyectos/Python/clima_caracas_dashboard.zip' },
+      { name: 'loan_approval_prediction.zip (ML - Préstamos)', path: '/proyectos/Python/Loan_approval_Prediction_mejorado.zip' },
+      { name: 'analisis_ventas_productos.zip (Análisis de Ventas)', path: '/proyectos/Python/Active_Product_Sales_Analysis_mejorado.zip' },
+      { name: 'web_scraping_acciones.zip (Web Scraping)', path: '/proyectos/Python/Web_Scraping_Stock_Prices_mejorado.zip' },
+    ],
+  },
+  {
+    id: 7,
+    icon: '🧠',
+    titleEs: '7. Feature Engineering & ML Insights',
+    titleEn: '7. Feature Engineering & ML Insights',
+    levelEs: 'Avanzado',
+    levelEn: 'Advanced',
+    descEs: 'Análisis completo: 9 fases de Feature Engineering, Random Forest, 8 visualizaciones e insights de negocio',
+    descEn: 'Full analysis: 9-phase Feature Engineering pipeline, Random Forest, 8 visualizations and business insights',
+    tags: ['Python', 'Pandas', 'Scikit-learn', 'Matplotlib', 'ML', 'Feature Engineering', 'Random Forest'],
+    href: '/proyectos/FeatureEngineering/',
+    color: 'teal',
+    files: [
+      { name: 'ventas_feature_engineered.csv', path: '/proyectos/FeatureEngineering/ventas_feature_engineered.csv' },
     ],
   },
 ];
@@ -155,6 +175,7 @@ const colorMap: Record<string, { bg: string; text: string; border: string; badge
   pink:   { bg: 'bg-pink-50 dark:bg-pink-900/20', text: 'text-pink-700 dark:text-pink-400', border: 'border-pink-200 dark:border-pink-800', badge: 'bg-pink-100 dark:bg-pink-900/30 text-pink-700 dark:text-pink-400' },
   sky:    { bg: 'bg-sky-50 dark:bg-sky-900/20', text: 'text-sky-700 dark:text-sky-400', border: 'border-sky-200 dark:border-sky-800', badge: 'bg-sky-100 dark:bg-sky-900/30 text-sky-700 dark:text-sky-400' },
   violet: { bg: 'bg-violet-50 dark:bg-violet-900/20', text: 'text-violet-700 dark:text-violet-400', border: 'border-violet-200 dark:border-violet-800', badge: 'bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-400' },
+  teal:   { bg: 'bg-teal-50 dark:bg-teal-900/20', text: 'text-teal-700 dark:text-teal-400', border: 'border-teal-200 dark:border-teal-800', badge: 'bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-400' },
 };
 
 export default function Portfolio() {
@@ -292,6 +313,20 @@ export default function Portfolio() {
                     </div>
                   ))}
                 </div>
+              </div>
+            )}
+
+            {/* 🧠 Feature Engineering Report — solo para proyecto Feature Engineering */}
+            {selected.id === 7 && (
+              <div className="mt-5 pt-4 border-t border-gray-100 dark:border-gray-700">
+                <FeatureEngineeringReport />
+              </div>
+            )}
+
+            {/* 🌤️ Weather Dashboard — solo para proyecto Python */}
+            {selected.id === 6 && (
+              <div className="mt-5 pt-4 border-t border-gray-100 dark:border-gray-700">
+                <WeatherDashboard />
               </div>
             )}
           </div>

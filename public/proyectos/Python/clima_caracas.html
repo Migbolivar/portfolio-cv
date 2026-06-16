@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🌤️ Clima en Vivo — Caracas, Venezuela</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: linear-gradient(135deg, #030712 0%, #111827 50%, #0f0f23 100%);
+    color: #e5e7eb;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+  }
+  .dashboard {
+    max-width: 900px;
+    width: 100%;
+    background: #111827cc;
+    border: 1px solid #374151;
+    border-radius: 1.5rem;
+    padding: 2rem;
+    backdrop-filter: blur(20px);
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.5);
+  }
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .header h1 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, #8b5cf6, #a78bfa);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .header .subtitle { font-size: 0.75rem; color: #6b7280; margin-top: 0.25rem; }
+  .toggle {
+    display: flex;
+    background: #374151;
+    border-radius: 0.5rem;
+    padding: 2px;
+  }
+  .toggle button {
+    padding: 0.4rem 1rem;
+    border: none;
+    border-radius: 0.4rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: transparent;
+    color: #9ca3af;
+  }
+  .toggle button.active {
+    background: #7c3aed;
+    color: white;
+    box-shadow: 0 2px 8px rgba(124,58,237,0.4);
+  }
+  .current {
+    background: linear-gradient(135deg, rgba(124,58,237,0.15), rgba(139,92,246,0.1));
+    border: 1px solid rgba(124,58,237,0.2);
+    border-radius: 1rem;
+    padding: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+  }
+  .current .icon { font-size: 3.5rem; }
+  .current .temp { font-size: 2.5rem; font-weight: 700; color: #fff; }
+  .current .desc { font-size: 0.9rem; color: #a78bfa; }
+  .current .feels { font-size: 0.75rem; color: #9ca3af; margin-top: 0.15rem; }
+  .current .details {
+    margin-left: auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.25rem 1.5rem;
+    font-size: 0.75rem;
+    color: #d1d5db;
+  }
+  .forecast {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+  }
+  .day-card {
+    background: rgba(31,41,55,0.8);
+    border: 1px solid #374151;
+    border-radius: 0.75rem;
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    text-align: left;
+  }
+  .day-card:hover { border-color: rgba(124,58,237,0.5); background: rgba(31,41,55,0.95); }
+  .day-card .day-icon { font-size: 1.5rem; margin-bottom: 0.25rem; }
+  .day-card .day-date { font-size: 0.75rem; font-weight: 600; color: #d1d5db; }
+  .day-card .day-temp { font-size: 1.25rem; font-weight: 700; color: #fff; }
+  .day-card .day-min { font-size: 0.75rem; color: #6b7280; }
+  .day-card .bar {
+    margin-top: 0.5rem;
+    height: 4px;
+    background: #374151;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .day-card .bar-fill {
+    height: 100%;
+    border-radius: 2px;
+    background: linear-gradient(90deg, #3b82f6, #8b5cf6, #f59e0b);
+    transition: width 0.5s;
+  }
+  .day-card .hourly {
+    display: none;
+    margin-top: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid #374151;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+  }
+  .day-card.expanded .hourly { display: grid; }
+  .day-card.expanded {
+    grid-column: 1 / -1;
+    border-color: rgba(124,58,237,0.5);
+    box-shadow: 0 0 0 1px rgba(124,58,237,0.3);
+  }
+  .hour-slot { text-align: center; background: rgba(55,65,81,0.5); padding: 0.5rem; border-radius: 0.5rem; }
+  .hour-slot .h-time { font-size: 0.65rem; color: #9ca3af; }
+  .hour-slot .h-icon { font-size: 1rem; margin: 0.25rem 0; }
+  .hour-slot .h-temp { font-size: 0.75rem; font-weight: 600; color: #fff; }
+  .hour-slot .h-wind { font-size: 0.6rem; color: #6b7280; margin-top: 0.15rem; }
+  .astronomy { font-size: 0.7rem; color: #6b7280; display: flex; gap: 1rem; margin-top: 0.4rem; }
+  .footer {
+    font-size: 0.65rem;
+    color: #4b5563;
+    text-align: center;
+    margin-top: 1rem;
+  }
+  .footer a { color: #8b5cf6; text-decoration: none; }
+  .loading { text-align: center; padding: 3rem; color: #6b7280; }
+  .spinner {
+    width: 40px; height: 40px;
+    border: 3px solid #374151;
+    border-top-color: #7c3aed;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin: 0 auto 1rem;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .error { text-align: center; padding: 2rem; color: #ef4444; }
+  .error button {
+    margin-top: 1rem;
+    padding: 0.5rem 1.5rem;
+    background: #7c3aed;
+    color: white;
+    border: none;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    font-size: 0.8rem;
+  }
+  @media (max-width: 640px) {
+    .dashboard { padding: 1rem; }
+    .current { flex-wrap: wrap; }
+    .current .details { margin-left: 0; width: 100%; }
+    .forecast { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="dashboard" id="app">
+  <div class="loading">
+    <div class="spinner"></div>
+    <p>Cargando datos del clima...</p>
+    <p style="font-size:0.7rem;margin-top:0.25rem">Caracas, Venezuela</p>
+  </div>
+</div>
+
+<script>
+const WEATHER_EMOJI = {
+  'sunny':'☀️','clear':'🌙','partly cloudy':'⛅','cloudy':'☁️','overcast':'☁️',
+  'mist':'🌫️','fog':'🌫️','patchy rain':'🌦️','patchy rain nearby':'🌦️',
+  'light rain':'🌧️','patchy light rain':'🌧️','moderate rain':'🌧️',
+  'heavy rain':'⛈️','thunder':'⛈️','light drizzle':'🌦️','patchy snow':'🌨️',
+  'snow':'❄️','blizzard':'🌨️'
+};
+
+function getEmoji(desc) {
+  const lower = desc.toLowerCase();
+  for (const [k, e] of Object.entries(WEATHER_EMOJI)) {
+    if (lower.includes(k)) return e;
+  }
+  return '🌤️';
+}
+
+const WINDS = { N:'↑', NNE:'↗', NE:'↗', ENE:'↗', E:'→', ESE:'↘', SE:'↘', SSE:'↘',
+  S:'↓', SSW:'↙', SW:'↙', WSW:'↙', W:'←', WNW:'↖', NW:'↖', NNW:'↖' };
+
+function formatDate(d) {
+  return new Date(d + 'T00:00:00').toLocaleDateString('es-ES', { weekday:'short', month:'short', day:'numeric' });
+}
+
+let state = { data: null, unit: 'C', expanded: null };
+
+function render() {
+  const { data, unit, expanded } = state;
+  if (!data) return;
+
+  const c = data.current_condition[0];
+  const fc = data.weather.slice(0, 3);
+  const t = (cVal, fVal) => unit === 'C' ? `${cVal}°C` : `${fVal}°F`;
+
+  document.getElementById('app').innerHTML = `
+    <div class="header">
+      <div>
+        <h1>🌤️ Clima en Vivo — Caracas, Venezuela</h1>
+        <p class="subtitle">Datos de wttr.in · Dashboard interactivo</p>
+      </div>
+      <div class="toggle">
+        <button class="${unit==='C'?'active':''}" onclick="setUnit('C')">°C</button>
+        <button class="${unit==='F'?'active':''}" onclick="setUnit('F')">°F</button>
+      </div>
+    </div>
+
+    <div class="current">
+      <span class="icon">${getEmoji(c.weatherDesc[0].value)}</span>
+      <div>
+        <div class="temp">${t(c.temp_C, c.temp_F)}</div>
+        <div class="desc">${c.weatherDesc[0].value}</div>
+        <div class="feels">Sensación ${t(c.FeelsLikeC, c.FeelsLikeF)}</div>
+      </div>
+      <div class="details">
+        <span>💧 ${c.humidity}%</span>
+        <span>💨 ${c.windspeedKmph} km/h</span>
+        <span>${WINDS[c.winddir16Point]||'●'} ${c.winddir16Point}</span>
+        <span>☁️ ${c.cloudcover}%</span>
+        <span>🔽 ${c.pressure} mb</span>
+        <span>☀️ UV ${c.uvIndex}</span>
+      </div>
+    </div>
+
+    <div class="forecast">
+      ${fc.map((day, i) => `
+        <div class="day-card${expanded===i?' expanded':''}" onclick="toggleDay(${i})">
+          <div class="day-icon">${getEmoji(day.hourly[4]?.weatherDesc[0]?.value||'')}</div>
+          <div class="day-date">${formatDate(day.date)}</div>
+          <div class="day-temp">${t(day.maxtempC, day.maxtempF)}</div>
+          <div class="day-min">${t(day.mintempC, day.mintempF)}</div>
+          <div class="bar"><div class="bar-fill" style="width:${Math.min(100,Math.max(10,(parseInt(day.avgtempC)/40)*100))}%"></div></div>
+          <div class="astronomy">
+            <span>🌅 ${day.astronomy[0].sunrise}</span>
+            <span>🌇 ${day.astronomy[0].sunset}</span>
+            <span>🌙 ${day.astronomy[0].moon_phase}</span>
+          </div>
+          <div class="hourly">
+            ${day.hourly.filter((_,j)=>j%3===0).map(h => `
+              <div class="hour-slot">
+                <div class="h-time">${h.time.padStart(4,'0').replace(/(\\d{2})(\\d{2})/,'$1:$2')}</div>
+                <div class="h-icon">${getEmoji(h.weatherDesc[0].value)}</div>
+                <div class="h-temp">${t(h.tempC, h.tempF)}</div>
+                <div class="h-wind">${WINDS[h.winddir16Point]||''} ${h.windspeedKmph}</div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `).join('')}
+    </div>
+
+    <div class="footer">
+      Dashboard creado con datos en tiempo real de <a href="https://wttr.in" target="_blank">wttr.in</a>
+      · Hecho en HTML + CSS + JavaScript vanilla
+    </div>
+  `;
+}
+
+function setUnit(u) { state.unit = u; render(); }
+function toggleDay(i) { state.expanded = state.expanded === i ? null : i; render(); }
+
+async function fetchWeather() {
+  try {
+    const res = await fetch('https://wttr.in/Caracas?format=j1');
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    state.data = await res.json();
+    render();
+  } catch (e) {
+    document.getElementById('app').innerHTML = `
+      <div class="error">
+        <p>⚠️ No se pudo cargar el clima</p>
+        <p style="font-size:0.75rem;color:#6b7280;margin-top:0.5rem">${e.message}</p>
+        <button onclick="location.reload()">Reintentar</button>
+      </div>`;
+  }
+}
+
+fetchWeather();
+</script>
+</body>
+</html>
