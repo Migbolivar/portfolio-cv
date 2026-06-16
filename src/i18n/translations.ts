@@ -7,7 +7,7 @@ export const translations: Record<Lang, Record<string, any>> = {
       portfolio: 'Portafolio',
     },
     hero: {
-      role: 'Data Analyst & Business Administrator',
+      role: 'Data Analyst & AI Automation Specialist',
       location: 'Caracas, Venezuela',
       remote: 'Remote · Open to Work',
       languages: 'ES Nativo · EN B1',
@@ -87,7 +87,7 @@ export const translations: Record<Lang, Record<string, any>> = {
       portfolio: 'Portfolio',
     },
     hero: {
-      role: 'Data Analyst & Business Administrator',
+      role: 'Data Analyst & AI Automation Specialist',
       location: 'Caracas, Venezuela',
       remote: 'Remote · Open to Work',
       languages: 'ES Native · EN B1',
