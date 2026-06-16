@@ -183,7 +183,7 @@ export default function Portfolio() {
   const [selected, setSelected] = useState<Project | null>(null);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-blue-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950">
+    <div className="min-h-screen bg-slate-50 dark:bg-gray-950">
       {/* Navigation */}
       <nav className="max-w-6xl mx-auto px-4 sm:px-6 py-4 flex items-center justify-between">
         <Link to="/" className="flex items-center gap-2 font-bold text-xl text-gray-800 dark:text-white hover:opacity-80">
@@ -192,13 +192,13 @@ export default function Portfolio() {
         <div className="flex items-center gap-2">
           <button
             onClick={() => setLang(lang === 'es' ? 'en' : 'es')}
-            className="px-2 py-1 rounded-lg text-xs font-medium bg-white dark:bg-gray-800 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700"
+            className="px-2 py-1 rounded-lg text-xs font-medium bg-white dark:bg-gray-900 text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700"
           >
             {lang === 'es' ? 'EN' : 'ES'}
           </button>
           <Link
             to="/"
-            className="px-3 py-2 bg-white dark:bg-gray-800 text-gray-600 dark:text-gray-400 rounded-xl text-sm font-medium shadow-sm hover:shadow-md transition-all border border-gray-200 dark:border-gray-700"
+            className="px-3 py-2 bg-white dark:bg-gray-900 text-gray-600 dark:text-gray-400 rounded-xl text-sm font-medium shadow-sm hover:shadow-md transition-all border border-gray-200 dark:border-gray-700"
           >
             ← {t('portfolio.backToCV')}
           </Link>
@@ -223,7 +223,7 @@ export default function Portfolio() {
                 key={project.id}
                 onClick={() => setSelected(selected?.id === project.id ? null : project)}
                 className={`text-left rounded-2xl p-5 border transition-all duration-200 cursor-pointer
-                  bg-white dark:bg-gray-800 border-gray-100 dark:border-gray-700
+                  bg-white dark:bg-gray-900 border-gray-100 dark:border-gray-700
                   hover:shadow-lg hover:-translate-y-1 hover:border-blue-300 dark:hover:border-blue-700
                   ${selected?.id === project.id ? 'ring-2 ring-blue-500 shadow-lg -translate-y-1' : ''}
                   animate-fade-up stagger-${project.id}`}
@@ -254,7 +254,7 @@ export default function Portfolio() {
 
         {/* Expanded project detail */}
         {selected && (
-          <div className="mt-6 bg-white dark:bg-gray-800 rounded-2xl p-6 border border-gray-100 dark:border-gray-700 shadow-lg animate-[fadeIn_0.2s_ease-out]">
+          <div className="mt-6 bg-white dark:bg-gray-900 rounded-2xl p-6 border border-gray-100 dark:border-gray-700 shadow-lg animate-[fadeIn_0.2s_ease-out]">
             <div className="flex items-start justify-between mb-4">
               <div>
                 <h2 className="text-xl font-bold text-gray-800 dark:text-white">
