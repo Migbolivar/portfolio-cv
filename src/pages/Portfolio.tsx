@@ -207,7 +207,7 @@ export default function Portfolio() {
 
       {/* Header */}
       <header className="text-center py-8 sm:py-12">
-        <h1 className="text-3xl sm:text-5xl font-extrabold bg-gradient-to-r from-blue-500 via-purple-500 to-amber-500 bg-clip-text text-transparent">
+        <h1 className="text-3xl sm:text-5xl font-extrabold text-indigo-600 dark:text-indigo-400">
           {t('portfolio.title')}
         </h1>
         <p className="text-gray-500 dark:text-gray-400 mt-2 text-sm sm:text-base">{t('portfolio.subtitle')}</p>
@@ -225,7 +225,8 @@ export default function Portfolio() {
                 className={`text-left rounded-2xl p-5 border transition-all duration-200 cursor-pointer
                   bg-white dark:bg-gray-800 border-gray-100 dark:border-gray-700
                   hover:shadow-lg hover:-translate-y-1 hover:border-blue-300 dark:hover:border-blue-700
-                  ${selected?.id === project.id ? 'ring-2 ring-blue-500 shadow-lg -translate-y-1' : ''}`}
+                  ${selected?.id === project.id ? 'ring-2 ring-blue-500 shadow-lg -translate-y-1' : ''}
+                  animate-fade-up stagger-${project.id}`}
               >
                 <div className={`w-10 h-10 ${c.bg} rounded-xl flex items-center justify-center text-xl mb-3`}>
                   {project.icon}

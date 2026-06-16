@@ -49,7 +49,7 @@ export default function CV() {
 
       {/* Hero / Header */}
       <section className="max-w-5xl mx-auto px-4 sm:px-6 pt-8 pb-6">
-        <div className="bg-white dark:bg-gray-800 rounded-3xl p-6 sm:p-10 shadow-lg border border-gray-100 dark:border-gray-700">
+        <div className="bg-white dark:bg-gray-800 rounded-3xl p-6 sm:p-10 shadow-lg border border-gray-100 dark:border-gray-700 animate-fade-up">
           <div className="flex flex-col sm:flex-row items-start gap-6">
             <div className="w-24 h-24 sm:w-28 sm:h-28 rounded-full overflow-hidden flex-shrink-0 shadow-lg border-2 border-white dark:border-gray-700">
               <img
@@ -103,7 +103,7 @@ export default function CV() {
           {/* Left column */}
           <div className="lg:col-span-1 space-y-4">
             {/* Professional Summary */}
-            <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 shadow-sm border border-gray-100 dark:border-gray-700">
+            <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 shadow-sm border border-gray-100 dark:border-gray-700 animate-fade-up stagger-1">
               <h3 className="font-bold text-gray-800 dark:text-white mb-3 flex items-center gap-2">
                 <span>💼</span> {t('cv.professionalSummary')}
               </h3>
@@ -113,7 +113,7 @@ export default function CV() {
             </div>
 
             {/* Education */}
-            <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 shadow-sm border border-gray-100 dark:border-gray-700">
+            <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 shadow-sm border border-gray-100 dark:border-gray-700 animate-fade-up stagger-2">
               <h3 className="font-bold text-gray-800 dark:text-white mb-3 flex items-center gap-2">
                 <span>🎓</span> {t('cv.education')}
               </h3>
@@ -130,7 +130,7 @@ export default function CV() {
             </div>
 
             {/* Languages */}
-            <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 shadow-sm border border-gray-100 dark:border-gray-700">
+            <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 shadow-sm border border-gray-100 dark:border-gray-700 animate-fade-up stagger-3">
               <h3 className="font-bold text-gray-800 dark:text-white mb-3 flex items-center gap-2">
                 <span>🌍</span> {t('cv.languages')}
               </h3>
@@ -147,7 +147,7 @@ export default function CV() {
             </div>
 
             {/* Portfolio link */}
-            <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 shadow-sm border border-gray-100 dark:border-gray-700">
+            <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 shadow-sm border border-gray-100 dark:border-gray-700 animate-fade-up stagger-4">
               <h3 className="font-bold text-gray-800 dark:text-white mb-3 flex items-center gap-2">
                 <span>📁</span> {t('cv.portfolio')}
               </h3>
@@ -173,7 +173,7 @@ export default function CV() {
           {/* Right column */}
           <div className="lg:col-span-2 space-y-4">
             {/* Technical Skills */}
-            <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 shadow-sm border border-gray-100 dark:border-gray-700">
+            <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 shadow-sm border border-gray-100 dark:border-gray-700 animate-fade-up stagger-1">
               <h3 className="font-bold text-gray-800 dark:text-white mb-4 flex items-center gap-2">
                 <span>🛠️</span> {t('cv.technicalSkills')}
               </h3>
@@ -182,7 +182,7 @@ export default function CV() {
                   <div className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">{t('cv.dataBI')}</div>
                   <div className="flex flex-wrap gap-1.5">
                     {skills.dataBI.map(skill => (
-                      <span key={skill} className="text-xs bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 px-2.5 py-1 rounded-lg">{skill}</span>
+                      <span key={skill} className="text-xs bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 px-2.5 py-1 rounded-lg">{skill}</span>
                     ))}
                   </div>
                 </div>
@@ -190,7 +190,7 @@ export default function CV() {
                   <div className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">{t('cv.aiAutomation')}</div>
                   <div className="flex flex-wrap gap-1.5">
                     {skills.ai.map(skill => (
-                      <span key={skill} className="text-xs bg-purple-50 dark:bg-purple-900/20 text-purple-700 dark:text-purple-400 px-2.5 py-1 rounded-lg">{skill}</span>
+                      <span key={skill} className="text-xs bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400 px-2.5 py-1 rounded-lg">{skill}</span>
                     ))}
                   </div>
                 </div>
@@ -198,7 +198,7 @@ export default function CV() {
                   <div className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">{t('cv.infraRemote')}</div>
                   <div className="flex flex-wrap gap-1.5">
                     {skills.infra.map(skill => (
-                      <span key={skill} className="text-xs bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 px-2.5 py-1 rounded-lg">{skill}</span>
+                      <span key={skill} className="text-xs bg-amber-50 dark:bg-amber-900/20 text-amber-700 dark:text-amber-400 px-2.5 py-1 rounded-lg">{skill}</span>
                     ))}
                   </div>
                 </div>
@@ -206,13 +206,13 @@ export default function CV() {
             </div>
 
             {/* Experience */}
-            <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 shadow-sm border border-gray-100 dark:border-gray-700">
+            <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 shadow-sm border border-gray-100 dark:border-gray-700 animate-fade-up stagger-2">
               <h3 className="font-bold text-gray-800 dark:text-white mb-4 flex items-center gap-2">
                 <span>📈</span> {t('cv.professionalExperience')}
               </h3>
               <div className="space-y-5">
                 {(t('experience') as unknown as any[]).map((exp: any, idx: number) => (
-                  <div key={idx} className="border-l-2 border-blue-200 dark:border-blue-800 pl-4">
+                  <div key={idx} className="bg-white dark:bg-gray-800 rounded-xl p-4 border border-gray-100 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-700 hover:shadow-md transition-all duration-200">
                     <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-1 mb-2">
                       <div>
                         <h4 className="font-semibold text-gray-800 dark:text-white text-sm">{exp.title}</h4>
@@ -236,7 +236,7 @@ export default function CV() {
             </div>
 
             {/* Certifications */}
-            <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 shadow-sm border border-gray-100 dark:border-gray-700">
+            <div className="bg-white dark:bg-gray-800 rounded-2xl p-5 shadow-sm border border-gray-100 dark:border-gray-700 animate-fade-up stagger-3">
               <h3 className="font-bold text-gray-800 dark:text-white mb-3 flex items-center gap-2">
                 <span>📜</span> Certificaciones
               </h3>
