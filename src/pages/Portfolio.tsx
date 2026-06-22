@@ -4,6 +4,7 @@ import { useLang } from '../context/LangContext';
 import WeatherDashboard from '../components/WeatherDashboard';
 import FeatureEngineeringReport from '../components/FeatureEngineeringReport';
 import ChurnPredictionReport from '../components/ChurnPredictionReport';
+import MarketBasketReport from '../components/MarketBasketReport';
 
 interface Project {
   id: number;
@@ -170,13 +171,13 @@ const projects: Project[] = [
   {
     id: 8,
     icon: '🔮',
-    titleEs: '8. ML — Churn Prediction Engine',
-    titleEn: '8. ML — Churn Prediction Engine',
+    titleEs: '8. ML & Data Mining',
+    titleEn: '8. ML & Data Mining',
     levelEs: 'Avanzado',
     levelEn: 'Advanced',
-    descEs: 'Pipeline completo de ML: EDA, Feature Engineering, Logistic Regression vs Random Forest, SHAP, 5 fases con gráficos e insights de negocio accionables',
-    descEn: 'Full ML pipeline: EDA, Feature Engineering, Logistic Regression vs Random Forest, SHAP, 5 phases with charts and actionable business insights',
-    tags: ['Python', 'Scikit-learn', 'SHAP', 'Logistic Regression', 'Random Forest', 'Pipeline', 'Churn'],
+    descEs: 'Churn Prediction (ML supervisado, SHAP, Logistic Regression) + Market Basket Analysis (Data Mining, Apriori, Clustering, Reglas de Asociación, 4 fases)',
+    descEn: 'Churn Prediction (Supervised ML, SHAP, Logistic Regression) + Market Basket Analysis (Data Mining, Apriori, Clustering, Association Rules, 4 phases)',
+    tags: ['Python', 'Scikit-learn', 'SHAP', 'Logistic Regression', 'Apriori', 'Clustering', 'K-Means', 'Data Mining', 'ML'],
     href: '/proyectos/ChurnPrediction/',
     color: 'red',
     files: [
@@ -345,6 +346,13 @@ export default function Portfolio() {
             {selected.id === 8 && (
               <div className="mt-5 pt-4 border-t border-gray-100 dark:border-gray-700">
                 <ChurnPredictionReport />
+              </div>
+            )}
+
+            {/* 🛒 Market Basket Analysis — proyecto Churn Prediction */}
+            {selected.id === 8 && (
+              <div className="mt-2">
+                <MarketBasketReport />
               </div>
             )}
 
