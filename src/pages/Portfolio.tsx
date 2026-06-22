@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useLang } from '../context/LangContext';
 import WeatherDashboard from '../components/WeatherDashboard';
 import FeatureEngineeringReport from '../components/FeatureEngineeringReport';
+import ChurnPredictionReport from '../components/ChurnPredictionReport';
 
 interface Project {
   id: number;
@@ -166,6 +167,28 @@ const projects: Project[] = [
       { name: 'ventas_feature_engineered.csv', path: '/proyectos/FeatureEngineering/ventas_feature_engineered.csv' },
     ],
   },
+  {
+    id: 8,
+    icon: '🔮',
+    titleEs: '8. ML — Churn Prediction Engine',
+    titleEn: '8. ML — Churn Prediction Engine',
+    levelEs: 'Avanzado',
+    levelEn: 'Advanced',
+    descEs: 'Pipeline completo de ML: EDA, Feature Engineering, Logistic Regression vs Random Forest, SHAP, 5 fases con gráficos e insights de negocio accionables',
+    descEn: 'Full ML pipeline: EDA, Feature Engineering, Logistic Regression vs Random Forest, SHAP, 5 phases with charts and actionable business insights',
+    tags: ['Python', 'Scikit-learn', 'SHAP', 'Logistic Regression', 'Random Forest', 'Pipeline', 'Churn'],
+    href: '/proyectos/ChurnPrediction/',
+    color: 'red',
+    files: [
+      { name: '01_eda.py', path: '/proyectos/ChurnPrediction/01_eda.py' },
+      { name: '02_feature_engineering.py', path: '/proyectos/ChurnPrediction/02_feature_engineering.py' },
+      { name: '03_modeling.py', path: '/proyectos/ChurnPrediction/03_modeling.py' },
+      { name: '04_shap_insights.py', path: '/proyectos/ChurnPrediction/04_shap_insights.py' },
+      { name: '05_inference.py', path: '/proyectos/ChurnPrediction/05_inference.py' },
+      { name: 'README.md', path: '/proyectos/ChurnPrediction/README.md' },
+      { name: 'data.csv (dataset)', path: '/proyectos/ChurnPrediction/data.csv' },
+    ],
+  },
 ];
 
 const colorMap: Record<string, { bg: string; text: string; border: string; badge: string }> = {
@@ -176,6 +199,7 @@ const colorMap: Record<string, { bg: string; text: string; border: string; badge
   sky:    { bg: 'bg-sky-50 dark:bg-sky-900/20', text: 'text-sky-700 dark:text-sky-400', border: 'border-sky-200 dark:border-sky-800', badge: 'bg-sky-100 dark:bg-sky-900/30 text-sky-700 dark:text-sky-400' },
   violet: { bg: 'bg-violet-50 dark:bg-violet-900/20', text: 'text-violet-700 dark:text-violet-400', border: 'border-violet-200 dark:border-violet-800', badge: 'bg-violet-100 dark:bg-violet-900/30 text-violet-700 dark:text-violet-400' },
   teal:   { bg: 'bg-teal-50 dark:bg-teal-900/20', text: 'text-teal-700 dark:text-teal-400', border: 'border-teal-200 dark:border-teal-800', badge: 'bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-400' },
+  red:    { bg: 'bg-red-50 dark:bg-red-900/20', text: 'text-red-700 dark:text-red-400', border: 'border-red-200 dark:border-red-800', badge: 'bg-red-100 dark:bg-red-900/30 text-red-700 dark:text-red-400' },
 };
 
 export default function Portfolio() {
@@ -314,6 +338,13 @@ export default function Portfolio() {
                     </div>
                   ))}
                 </div>
+              </div>
+            )}
+
+            {/* 🔮 Churn Prediction Report — proyecto Churn Prediction */}
+            {selected.id === 8 && (
+              <div className="mt-5 pt-4 border-t border-gray-100 dark:border-gray-700">
+                <ChurnPredictionReport />
               </div>
             )}
 
