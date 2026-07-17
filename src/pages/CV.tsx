@@ -1,8 +1,10 @@
 import { Link } from 'react-router-dom';
 import { useLang } from '../context/LangContext';
+import { useTheme } from '../context/ThemeContext';
 
 export default function CV() {
   const { t, lang, setLang } = useLang();
+  const { theme, toggle: toggleTheme } = useTheme();
 
   const skills = {
     dataBI: ['Power BI', 'Tableau', 'Looker Studio', 'SQL', 'Python (Pandas, NumPy, Matplotlib)', 'ETL Pipelines', 'KPIs', 'Dashboards'],
@@ -38,12 +40,29 @@ export default function CV() {
           >
             {lang === 'es' ? 'EN' : 'ES'}
           </button>
+          <button
+            onClick={toggleTheme}
+            className="p-1.5 rounded-lg text-sm transition-all hover:rotate-12
+              bg-white dark:bg-gray-900 text-gray-500 dark:text-gray-400
+              hover:bg-gray-100 dark:hover:bg-gray-700 border border-gray-200 dark:border-gray-700"
+            aria-label="Toggle theme"
+          >
+            {theme === 'dark' ? '☀️' : '🌙'}
+          </button>
           <Link
             to="/proyectos"
             className="px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-xl text-sm font-medium shadow-sm hover:shadow-md transition-all"
           >
             📁 {t('nav.portfolio')}
           </Link>
+          <a
+            href="https://miguelbolivar-ai-portfolio.netlify.app"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-4 py-2 bg-gradient-to-r from-emerald-500 to-teal-600 text-white rounded-xl text-sm font-medium shadow-sm hover:shadow-md transition-all"
+          >
+            {t('nav.aiPortfolio')}
+          </a>
         </div>
       </nav>
 
@@ -167,6 +186,25 @@ export default function CV() {
               <p className="text-xs text-gray-400 dark:text-gray-500 mt-2 text-center">
                 {t('cv.portfolioDesc')}
               </p>
+            </div>
+
+            {/* AI Portfolio link */}
+            <div className="bg-white dark:bg-gray-900 rounded-2xl p-5 shadow-sm border border-gray-100 dark:border-gray-700 animate-fade-up stagger-4">
+              <a
+                href="https://miguelbolivar-ai-portfolio.netlify.app"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700 text-white rounded-xl p-4 transition-all hover:shadow-lg hover:-translate-y-0.5 group"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center text-lg">🤖</div>
+                  <div className="flex-1">
+                    <div className="font-semibold text-sm">{t('cv.aiPortfolio')}</div>
+                    <div className="text-xs text-emerald-100 mt-0.5">{t('cv.aiPortfolioDesc')}</div>
+                  </div>
+                  <div className="text-white/70 group-hover:translate-x-0.5 transition-transform text-lg">→</div>
+                </div>
+              </a>
             </div>
           </div>
 

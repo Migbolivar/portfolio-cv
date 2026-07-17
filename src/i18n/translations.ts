@@ -5,6 +5,7 @@ export const translations: Record<Lang, Record<string, any>> = {
     nav: {
       cv: 'CV',
       portfolio: 'Portafolio',
+      aiPortfolio: '🤖 AI',
     },
     hero: {
       role: 'Data Analyst & AI Automation Specialist',
@@ -27,6 +28,8 @@ export const translations: Record<Lang, Record<string, any>> = {
       portfolioDesc: 'Portafolio con 7 proyectos — del análisis básico al avanzado',
       portfolioLink: 'Mis Proyectos',
       portfolioTags: 'Excel · SQL · Power BI · Tableau Desktop · Looker Studio · Python',
+      aiPortfolio: '🤖 Portafolio AI',
+      aiPortfolioDesc: 'Infraestructura · Automatización · RAG',
       technicalSkills: 'Habilidades Técnicas',
       dataBI: 'Data & BI',
       aiAutomation: 'AI & Automatización',
@@ -85,6 +88,7 @@ export const translations: Record<Lang, Record<string, any>> = {
     nav: {
       cv: 'CV',
       portfolio: 'Portfolio',
+      aiPortfolio: '🤖 AI',
     },
     hero: {
       role: 'Data Analyst & AI Automation Specialist',
@@ -107,6 +111,8 @@ export const translations: Record<Lang, Record<string, any>> = {
       portfolioDesc: 'Portfolio with 7 projects — from basic to advanced analysis',
       portfolioLink: 'My Projects',
       portfolioTags: 'Excel · SQL · Power BI · Tableau Desktop · Looker Studio · Python',
+      aiPortfolio: '🤖 AI Portfolio',
+      aiPortfolioDesc: 'Infrastructure · Automation · RAG',
       technicalSkills: 'Technical Skills',
       dataBI: 'Data & BI',
       aiAutomation: 'AI & Automation',
