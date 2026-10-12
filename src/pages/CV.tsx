@@ -100,6 +100,19 @@ export default function CV() {
   const { theme, toggle: toggleTheme } = useTheme();
   useScrollAnimations();
 
+  // Cifras reales desde el VPS (endpoint /stats) con fallback si no responde
+  const [stats, setStats] = useState({ containers: 47, certificaciones: 14, proyectos: 44 });
+  useEffect(() => {
+    fetch('https://devwebhook.bmops.tech/stats', { mode: 'cors' })
+      .then(r => r.ok ? r.json() : Promise.reject(new Error('http ' + r.status)))
+      .then(d => {
+        if (d && typeof d.containers === 'number' && typeof d.certificaciones === 'number' && typeof d.proyectos === 'number') {
+          setStats({ containers: d.containers, certificaciones: d.certificaciones, proyectos: d.proyectos });
+        }
+      })
+      .catch(() => { /* fallback silencioso a valores por defecto */ });
+  }, []);
+
   const skills = {
     dataBI: [
       { name: 'Power BI', detail: 'Dashboards interactivos, DAX, modelado de datos' },
@@ -145,14 +158,17 @@ export default function CV() {
   const certs = [
     { name: 'AI Fluency: Framework & Foundations (Anthropic)', pdf: '/certificados/ai-fluency-anthropic.pdf', thumb: '/certificados/ai-fluency-anthropic.png' },
     { name: 'Introduction to Agent Skills (Anthropic)', pdf: '/certificados/introduction-agent-skills-anthropic.pdf', thumb: '/certificados/introduction-agent-skills-anthropic.png' },
+    { name: 'Claude Code 101 (Anthropic)', pdf: '/certificados/claude-code-101-anthropic.pdf', thumb: '/certificados/claude-code-101-anthropic.png' },
+    { name: 'One Million Prompters — Prompt Engineering (Dubai Future Foundation)', pdf: '/certificados/one-million-prompters-dubai.pdf', thumb: '/certificados/one-million-prompters-dubai.png' },
+    { name: 'Iniciación al Desarrollo con IA (mouredev · BIG school)', pdf: '/certificados/curso-iniciacion-desarrollo-ia.pdf', thumb: '/certificados/curso-iniciacion-desarrollo-ia.png' },
+    { name: 'Claude Code in Action (Anthropic)', pdf: '/certificados/power-bi-basico.pdf', thumb: '/certificados/power-bi-basico.png' },
     { name: 'Licenciado en Administración', pdf: '/certificados/licenciado-administracion.pdf', thumb: '/certificados/licenciado-administracion.png' },
     { name: 'Diplomado en Negociaciones Internacionales', pdf: '/certificados/diplomado-negociaciones-internacionales.pdf', thumb: '/certificados/diplomado-negociaciones-internacionales.png' },
     { name: "Especialista en Indicadores de Gestión KPI's", pdf: '/certificados/data-analysis-python-ai.pdf', thumb: '/certificados/data-analysis-python-ai.png' },
     { name: 'Web Development (UneWeb)', pdf: '/certificados/desarrollo-web-uneweb.pdf', thumb: '/certificados/desarrollo-web-uneweb.png' },
-    { name: 'Claude AI (Anthropic)', pdf: '/certificados/claude-ai-anthropic.pdf', thumb: '/certificados/claude-ai-anthropic.png' },
+    { name: 'Claude 101 (Anthropic)', pdf: '/certificados/claude-ai-anthropic.pdf', thumb: '/certificados/claude-ai-anthropic.png' },
     { name: 'Power BI Básico', pdf: '/certificados/especialista-kpis.pdf', thumb: '/certificados/especialista-kpis.png' },
-    { name: 'Claude Code in Action', pdf: '/certificados/power-bi-basico.pdf', thumb: '/certificados/power-bi-basico.png' },
-    { name: 'Data Analisis Science con IA & Python', pdf: '/certificados/data-scientist-ds4b.pdf', thumb: '/certificados/data-scientist-ds4b.png' },
+    { name: 'Introducción al uso de IA en Proyectos de Data Science (DS4B)', pdf: '/certificados/data-scientist-ds4b.pdf', thumb: '/certificados/data-scientist-ds4b.png' },
     { name: 'Introducción a la Programación', pdf: '/certificados/introduccion-programacion.pdf', thumb: '/certificados/introduccion-programacion.png' },
   ];
 
@@ -225,9 +241,9 @@ export default function CV() {
               </div>
               {/* Stats row */}
               <div className="flex gap-4 mt-4 text-sm">
-                <div><span className="font-bold text-blue-500"><AnimatedCounter target={42} suffix="+" /></span> <span className="text-gray-400">Containers</span></div>
-                <div><span className="font-bold text-emerald-500"><AnimatedCounter target={9} suffix="+" /></span> <span className="text-gray-400">Certificaciones</span></div>
-                <div><span className="font-bold text-purple-500"><AnimatedCounter target={4} suffix="+" /></span> <span className="text-gray-400">Proyectos</span></div>
+                <div><span className="font-bold text-blue-500"><AnimatedCounter target={stats.containers} suffix="+" /></span> <span className="text-gray-400">Containers</span></div>
+                <div><span className="font-bold text-emerald-500"><AnimatedCounter target={stats.certificaciones} suffix="+" /></span> <span className="text-gray-400">Certificaciones</span></div>
+                <div><span className="font-bold text-purple-500"><AnimatedCounter target={stats.proyectos} suffix="+" /></span> <span className="text-gray-400">Proyectos</span></div>
               </div>
             </div>
           </div>
