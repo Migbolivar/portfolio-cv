@@ -15,7 +15,7 @@ export const translations: Record<Lang, Record<string, any>> = {
     },
     cv: {
       professionalSummary: 'Resumen Profesional',
-      summaryText: 'Fundador de BMOPS Consulting (enero 2026), consultora que ayuda a PYMES a convertir datos en decisiones. Más de 20 años como administrador y analista financiero me dan el criterio de negocio; el stack técnico —SQL, Power BI, Python, Excel, QuickBooks, n8n, agentes IA y RAG— me permite implementarlo. He desplegado Data Studio, un CRM con agente IA, asistentes de voz y 8 landings premium, todos en producción sobre infraestructura propia. Licenciado en Administración, especializado en KPIs y Power BI. Abierto a proyectos de consultoría y a roles remotos de Data Analyst. Inglés B1 técnico.',
+      summaryText: 'Fundador de BMOPS Consulting (enero 2026), consultora que ayuda a PYMES a convertir datos en decisiones. Más de 15 años como administrador y analista financiero me dan el criterio de negocio; el stack técnico —SQL, Power BI, Python, Excel, QuickBooks, n8n, agentes IA y RAG— me permite implementarlo. He desplegado Data Studio, un CRM con agente IA, asistentes de voz y 8 landings premium, todos en producción sobre infraestructura propia. Licenciado en Administración, especializado en KPIs y Power BI. Abierto a proyectos de consultoría y a roles remotos de Data Analyst. Inglés B1 técnico.',
       education: 'Educación',
       edu1: 'Licenciado en Administración',
       edu1School: 'Universidad Santa María, Caracas — 2012',
@@ -101,7 +101,7 @@ export const translations: Record<Lang, Record<string, any>> = {
     },
     cv: {
       professionalSummary: 'Professional Summary',
-      summaryText: 'Founder of BMOPS Consulting (January 2026), a consultancy that helps SMBs turn data into decisions. More than 20 years as an administrator and financial analyst give me the business judgement; the technical stack —SQL, Power BI, Python, Excel, QuickBooks, n8n, AI agents and RAG— lets me implement it. I have shipped Data Studio, an AI-agent CRM, voice assistants and 8 premium landing pages, all in production on my own infrastructure. Bachelor in Business Administration, specialised in KPIs and Power BI. Open to consulting projects and remote Data Analyst roles. Technical English B1.',
+      summaryText: 'Founder of BMOPS Consulting (January 2026), a consultancy that helps SMBs turn data into decisions. More than 15 years as an administrator and financial analyst give me the business judgement; the technical stack —SQL, Power BI, Python, Excel, QuickBooks, n8n, AI agents and RAG— lets me implement it. I have shipped Data Studio, an AI-agent CRM, voice assistants and 8 premium landing pages, all in production on my own infrastructure. Bachelor in Business Administration, specialised in KPIs and Power BI. Open to consulting projects and remote Data Analyst roles. Technical English B1.',
       education: 'Education',
       edu1: 'Bachelor in Business Administration',
       edu1School: 'Santa María University, Caracas — 2012',
