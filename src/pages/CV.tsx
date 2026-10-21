@@ -387,6 +387,12 @@ export default function CV() {
                         <div>
                           <h4 className="font-semibold text-gray-800 dark:text-white text-sm">{exp.title}</h4>
                           <p className="text-xs text-gray-500">{exp.company} — {exp.location}</p>
+                          {exp.url && (
+                            <a href={exp.url} target="_blank" rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1 text-xs text-blue-500 hover:underline mt-0.5">
+                              🔗 {lang === 'es' ? 'Ver en LinkedIn' : 'View on LinkedIn'}
+                            </a>
+                          )}
                         </div>
                         <span className="text-xs bg-gray-100 dark:bg-gray-700 text-gray-500 dark:text-gray-400 px-2 py-0.5 rounded-full whitespace-nowrap">
                           {exp.period}
