@@ -8,14 +8,14 @@ export const translations: Record<Lang, Record<string, any>> = {
       aiPortfolio: '🤖 AI',
     },
     hero: {
-      role: 'Data Analyst & AI Automation Specialist',
+      role: 'Data & AI Infrastructure Engineer',
       location: 'Caracas, Venezuela',
       remote: 'Remote · Open to Work',
       languages: 'ES Nativo · EN B1',
     },
     cv: {
       professionalSummary: 'Resumen Profesional',
-      summaryText: 'Administrador de Empresas con más de 10 años de experiencia en análisis financiero, generación de reportes ejecutivos, KPIs y dashboards de negocio. Data Analyst autodidacta en formación, apasionado por transformar datos en decisiones estratégicas. Uso de herramientas de IA, alojamiento de herramientas IA open source en servidor propio y en localhost. Busco oportunidades remotas internacionales donde pueda aportar mi experiencia en administración y mi creciente dominio del análisis de datos.',
+      summaryText: 'Administrador de Empresas con más de 10 años de experiencia en análisis financiero, presupuestos, KPIs y dashboards ejecutivos. Data Analyst con stack SQL (PostgreSQL, MySQL), Power BI (DAX, Power Query), Python (Pandas, Matplotlib), Excel avanzado y QuickBooks Online. Automatizo reportes y flujos con n8n sobre servidor propio self-hosted. Busco oportunidades 100% remotas como Data Analyst JR/Mid o Data Entry Analyst; inglés B1 técnico. Disponible para LatAm, US y Europa.',
       education: 'Educación',
       edu1: 'Licenciado en Administración',
       edu1School: 'Universidad Santa María, Caracas — 2012',
@@ -76,7 +76,7 @@ export const translations: Record<Lang, Record<string, any>> = {
         location: 'Caracas, Venezuela',
         period: '2014 – 2017',
         highlights: [
-          'Financial and operational management of 10+ simultaneous construction projects.',
+          'Financial and operational management of 15+ simultaneous construction projects.',
           'Creé dashboards de control de costos en Excel y Tableau para seguimiento de presupuestos.',
           'Automaticé reportes de cumplimiento fiscal (IVA) con Google Sheets + Apps Scripts, reduciendo errores en 30%.',
           'Implementé scripts Python ETL para transformar datos del ERP en dashboards para presentaciones a stakeholders.',
@@ -91,14 +91,14 @@ export const translations: Record<Lang, Record<string, any>> = {
       aiPortfolio: '🤖 AI',
     },
     hero: {
-      role: 'Data Analyst & AI Automation Specialist',
+      role: 'Data & AI Infrastructure Engineer',
       location: 'Caracas, Venezuela',
       remote: 'Remote · Open to Work',
       languages: 'ES Native · EN B1',
     },
     cv: {
       professionalSummary: 'Professional Summary',
-      summaryText: 'Business Administrator with 10+ years of experience in financial analysis, executive report generation, KPIs and business dashboards. Self-taught Data Analyst in training, passionate about transforming data into strategic decisions. Uses AI tools, hosts open-source AI tools on own server and localhost. Seeking international remote opportunities where I can contribute my administration experience and growing data analysis expertise.',
+      summaryText: 'Business Administrator with 10+ years of experience in financial analysis, budgeting, KPIs and executive dashboards. Data Analyst working with SQL (PostgreSQL, MySQL), Power BI (DAX, Power Query), Python (Pandas, Matplotlib), advanced Excel and QuickBooks Online. I automate reporting and workflows with n8n on my own self-hosted server. Seeking fully remote roles as Data Analyst (JR/Mid) or Data Entry Analyst; technical English B1. Available for LatAm, US and Europe.',
       education: 'Education',
       edu1: 'Bachelor in Business Administration',
       edu1School: 'Santa María University, Caracas — 2012',
@@ -159,7 +159,7 @@ export const translations: Record<Lang, Record<string, any>> = {
         location: 'Caracas, Venezuela',
         period: '2014 – 2017',
         highlights: [
-          'Financial and operational management of 10+ simultaneous construction projects.',
+          'Financial and operational management of 15+ simultaneous construction projects.',
           'Created cost-control dashboards in Excel and Tableau for budget tracking.',
           'Automated tax compliance reports (VAT) with Google Sheets + Apps Scripts, reducing errors by 30%.',
           'Implemented Python ETL scripts to transform ERP data into dashboards for stakeholder presentations.',

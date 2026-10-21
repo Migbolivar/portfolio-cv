@@ -7,6 +7,8 @@ import FeatureEngineeringReport from '../components/FeatureEngineeringReport';
 import ChurnPredictionReport from '../components/ChurnPredictionReport';
 import MarketBasketReport from '../components/MarketBasketReport';
 import DemandForecastingReport from '../components/DemandForecastingReport';
+import FraudDetectionReport from '../components/FraudDetectionReport';
+import CLVPredictionReport from '../components/CLVPredictionReport';
 
 interface Project {
   id: string;
@@ -44,8 +46,7 @@ const projects: Project[] = [
       { name: 'generar_excel.py', path: '/proyectos/Excel/generar_excel.py' },
       { name: 'Dashboard_financiero.xlsx', path: '/proyectos/Excel/Dashboard_financiero.xlsx' },
     ],
-    images: [{ src: '/proyectos/Excel/preview.png', alt: 'Excel Dashboard Preview' },
-             { src: '/proyectos/Excel/preview-sheets.png', alt: 'Google Sheets Attendance Tracker' }],
+    images: [{ src: '/proyectos/Excel/preview.png', alt: 'Excel Dashboard Preview' }],
     links: [{ labelEs: 'Registro de Asistencia (Google Sheets)', labelEn: 'Attendance Tracker (Google Sheets)',
       url: 'https://docs.google.com/spreadsheets/d/12VOyY01uLiMzy5ZOOw97u9jT-ZcFgPG3pAcX0ae3uVE/edit?usp=sharing' }],
   },
@@ -99,8 +100,7 @@ const projects: Project[] = [
       { labelEs: 'Reporte General', labelEn: 'General Report', url: 'https://datastudio.google.com/s/sIADSvd1gZs' },
       { labelEs: 'Parte 2', labelEn: 'Part 2', url: 'https://datastudio.google.com/s/tB1NF3AdBfI' },
     ],
-    images: [{ src: '/proyectos/LookerStudio/preview-1.png', alt: 'Looker Studio — Call Center Performance' },
-             { src: '/proyectos/LookerStudio/preview-2.png', alt: 'Looker Studio — Call Center Detail Analytics' }],
+    images: [{ src: '/proyectos/LookerStudio/preview-1.png', alt: 'Looker Studio — Call Center Performance' }],
   },
   {
     id: 'da6', icon: '👥', category: 'data-analysis',
@@ -180,6 +180,26 @@ const projects: Project[] = [
     href: '/proyectos/TimeSeries_Forecast/', color: 'lime',
     files: [{ name: 'daily_sales.csv', path: '/proyectos/TimeSeries_Forecast/daily_sales.csv' }],
     images: [{ src: '/proyectos/TimeSeries_Forecast/charts/02_forecast_comparison.png', alt: 'Forecast vs Actual' }],
+  },
+  {
+    id: 'ds8', icon: '💰', category: 'data-science',
+    titleEs: 'CLV Prediction', titleEn: 'CLV Prediction',
+    levelEs: 'Intermedio → Avanzado', levelEn: 'Intermediate → Advanced',
+    descEs: 'Predicción de Customer Lifetime Value con Gradient Boosting. RFM de 5K clientes, R² 0.950, MAPE 10.4%. 5 drivers clave del CLV.',
+    descEn: 'Customer Lifetime Value prediction with Gradient Boosting. RFM of 5K customers, R² 0.950, MAPE 10.4%. 5 key CLV drivers.',
+    tags: ['Python', 'Gradient Boosting', 'RFM', 'CLV', 'Regression'],
+    href: '/proyectos/CLVPrediction/', color: 'emerald',
+    images: [{ src: '/proyectos/CLVPrediction/predicciones_vs_real.png', alt: 'Predictions vs Actual' }],
+  },
+  {
+    id: 'ds7', icon: '🔒', category: 'data-science',
+    titleEs: 'Fraud Detection Pipeline', titleEn: 'Fraud Detection Pipeline',
+    levelEs: 'Intermedio → Avanzado', levelEn: 'Intermediate → Advanced',
+    descEs: 'Detección de fraude financiero con Random Forest. 10K transacciones, AUC-ROC 0.981, Recall 85.6%. 3 patrones críticos identificados.',
+    descEn: 'Financial fraud detection with Random Forest. 10K transactions, AUC-ROC 0.981, Recall 85.6%. 3 critical patterns identified.',
+    tags: ['Python', 'Scikit-learn', 'Random Forest', 'Fraud', 'MLOps'],
+    href: '/proyectos/FraudDetection/', color: 'rose',
+    images: [{ src: '/proyectos/FraudDetection/roc_curve.png', alt: 'ROC Curve' }],
   },
   {
     id: 'ds6', icon: '📊', category: 'data-science',
@@ -268,7 +288,7 @@ type Category = 'data-analysis' | 'data-science' | 'data-engineering';
 
 const tabs: { key: Category; icon: string; labelEs: string; labelEn: string; countEs: string; countEn: string }[] = [
   { key: 'data-analysis', icon: '📊', labelEs: 'Data Analysis', labelEn: 'Data Analysis', countEs: '7 proyectos', countEn: '7 projects' },
-  { key: 'data-science', icon: '🧠', labelEs: 'Data Science', labelEn: 'Data Science', countEs: '6 proyectos', countEn: '6 projects' },
+  { key: 'data-science', icon: '🧠', labelEs: 'Data Science', labelEn: 'Data Science', countEs: '8 proyectos', countEn: '8 projects' },
   { key: 'data-engineering', icon: '⚙️', labelEs: 'Data Engineering', labelEn: 'Data Engineering', countEs: '4 proyectos', countEn: '4 projects' },
 ];
 
@@ -333,7 +353,7 @@ export default function Portfolio() {
           {t('portfolio.title')}
         </h1>
         <p className="text-gray-500 dark:text-gray-400 mt-2 text-sm sm:text-base">
-          {t('portfolio.subtitle')} · 16 {lang === 'es' ? 'proyectos' : 'projects'}
+          {t('portfolio.subtitle')} · {projects.length} {lang === 'es' ? 'proyectos' : 'projects'}
         </p>
       </header>
 
@@ -469,6 +489,8 @@ export default function Portfolio() {
             {selected.id === 'ds2' && <div className="mt-5 pt-4 border-t border-gray-100 dark:border-gray-700"><FeatureEngineeringReport /></div>}
             {selected.id === 'ds1' && <div className="mt-5 pt-4 border-t border-gray-100 dark:border-gray-700"><WeatherDashboard /></div>}
             {selected.id === 'ds6' && <div className="mt-5 pt-4 border-t border-gray-100 dark:border-gray-700"><DemandForecastingReport /></div>}
+            {selected.id === 'ds7' && <div className="mt-5 pt-4 border-t border-gray-100 dark:border-gray-700"><FraudDetectionReport /></div>}
+            {selected.id === 'ds8' && <div className="mt-5 pt-4 border-t border-gray-100 dark:border-gray-700"><CLVPredictionReport /></div>}
           </div>
         )}
       </div>
@@ -477,7 +499,7 @@ export default function Portfolio() {
       <footer className="border-t border-gray-200 dark:border-gray-800 py-6 text-center">
         <p className="text-sm text-gray-400">
           © {new Date().getFullYear()} Miguel Angel Bolivar Mella ·{' '}
-          <a href="https://linkedin.com/in/miguel-angel-bolivar-mella-a0b988287" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">LinkedIn</a>
+          <a href="https://www.linkedin.com/in/miguel-angel-bolivar-mella-a0b988287/?isSelfProfile=true" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">LinkedIn</a>
         </p>
       </footer>
     </div>

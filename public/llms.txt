@@ -1,0 +1,17 @@
+# Miguel Bolivar — Data Analyst & AI Automation
+> Caracas, Venezuela · consultoria@bmops.tech
+
+## About
+Data Analyst and AI Automation consultant. Self-hosted infrastructure with 42+ Docker containers. Python, SQL, Power BI, n8n, AI Agents, RAG pipelines.
+
+## Key skills
+- Data: Power BI, Tableau, Python (Pandas, NumPy), SQL, ETL, KPIs
+- AI: n8n, Flowise, Dify, RAG, LangChain, AI Agents, Ollama
+- DevOps: Docker (42 containers), Linux, Nginx, PostgreSQL, WireGuard
+- Services: Chatbot RAG ($500-1500), Scraping ($150-300), Dashboards ($300-800), SEO ($200-500), Automation ($400-1200)
+
+## Links
+- Portfolio: https://miguelbolivar-portafolio.netlify.app/
+- Consulting: https://ai.bmops.tech/
+- Email: consultoria@bmops.tech
+- GitHub: https://github.com/Migbolivar

@@ -156,18 +156,19 @@ export default function CV() {
   };
 
   const certs = [
+    { name: 'QuickBooks Online Fundamentals Part 1 (Intuit)', pdf: '/certificados/quickbooks-online-fundamentals-pt1.pdf', thumb: '/certificados/quickbooks-online-fundamentals-pt1.png' },
     { name: 'AI Fluency: Framework & Foundations (Anthropic)', pdf: '/certificados/ai-fluency-anthropic.pdf', thumb: '/certificados/ai-fluency-anthropic.png' },
     { name: 'Introduction to Agent Skills (Anthropic)', pdf: '/certificados/introduction-agent-skills-anthropic.pdf', thumb: '/certificados/introduction-agent-skills-anthropic.png' },
     { name: 'Claude Code 101 (Anthropic)', pdf: '/certificados/claude-code-101-anthropic.pdf', thumb: '/certificados/claude-code-101-anthropic.png' },
     { name: 'One Million Prompters — Prompt Engineering (Dubai Future Foundation)', pdf: '/certificados/one-million-prompters-dubai.pdf', thumb: '/certificados/one-million-prompters-dubai.png' },
     { name: 'Iniciación al Desarrollo con IA (mouredev · BIG school)', pdf: '/certificados/curso-iniciacion-desarrollo-ia.pdf', thumb: '/certificados/curso-iniciacion-desarrollo-ia.png' },
-    { name: 'Claude Code in Action (Anthropic)', pdf: '/certificados/power-bi-basico.pdf', thumb: '/certificados/power-bi-basico.png' },
+    { name: 'Claude Code in Action (Anthropic)', pdf: '/certificados/claude-code-in-action.pdf', thumb: '/certificados/claude-code-in-action.png' },
     { name: 'Licenciado en Administración', pdf: '/certificados/licenciado-administracion.pdf', thumb: '/certificados/licenciado-administracion.png' },
     { name: 'Diplomado en Negociaciones Internacionales', pdf: '/certificados/diplomado-negociaciones-internacionales.pdf', thumb: '/certificados/diplomado-negociaciones-internacionales.png' },
-    { name: "Especialista en Indicadores de Gestión KPI's", pdf: '/certificados/data-analysis-python-ai.pdf', thumb: '/certificados/data-analysis-python-ai.png' },
+    { name: "Especialista en Indicadores de Gestión KPI's", pdf: '/certificados/especialista-kpis-adn.pdf', thumb: '/certificados/especialista-kpis-adn.png' },
     { name: 'Web Development (UneWeb)', pdf: '/certificados/desarrollo-web-uneweb.pdf', thumb: '/certificados/desarrollo-web-uneweb.png' },
     { name: 'Claude 101 (Anthropic)', pdf: '/certificados/claude-ai-anthropic.pdf', thumb: '/certificados/claude-ai-anthropic.png' },
-    { name: 'Power BI Básico', pdf: '/certificados/especialista-kpis.pdf', thumb: '/certificados/especialista-kpis.png' },
+    { name: 'Power BI Básico', pdf: '/certificados/power-bi-basico-adn.pdf', thumb: '/certificados/power-bi-basico-adn.png' },
     { name: 'Introducción al uso de IA en Proyectos de Data Science (DS4B)', pdf: '/certificados/data-scientist-ds4b.pdf', thumb: '/certificados/data-scientist-ds4b.png' },
     { name: 'Introducción a la Programación', pdf: '/certificados/introduccion-programacion.pdf', thumb: '/certificados/introduccion-programacion.png' },
   ];
@@ -222,7 +223,7 @@ export default function CV() {
                 <span>📍</span> {t('hero.location')}
               </p>
               <div className="flex flex-wrap gap-2 mt-3">
-                <a href="https://linkedin.com/in/miguel-angel-bolivar-mella-a0b988287" target="_blank" rel="noopener noreferrer"
+                <a href="https://www.linkedin.com/in/miguel-angel-bolivar-mella-a0b988287/?isSelfProfile=true" target="_blank" rel="noopener noreferrer"
                   className="inline-flex items-center gap-1 px-3 py-1.5 bg-blue-50 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 rounded-full text-sm font-medium hover:bg-blue-100 dark:hover:bg-blue-900/30 transition-all hover:scale-105">
                   🔗 LinkedIn
                 </a>
@@ -434,7 +435,7 @@ export default function CV() {
       <footer className="border-t border-gray-200 dark:border-gray-800 py-6 text-center">
         <p className="text-sm text-gray-400">
           © {new Date().getFullYear()} Miguel Angel Bolivar Mella · Caracas, Venezuela ·{' '}
-          <a href="https://linkedin.com/in/miguel-angel-bolivar-mella-a0b988287" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">LinkedIn</a>
+          <a href="https://www.linkedin.com/in/miguel-angel-bolivar-mella-a0b988287/?isSelfProfile=true" target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">LinkedIn</a>
         </p>
       </footer>
     </div>

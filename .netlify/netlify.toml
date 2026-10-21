@@ -6,7 +6,7 @@ headers = []
 [functions."*"]
 
 [build]
-publish = "/home/migbolivar/Hermes/portfolio-cv/dist"
+publish = "/root/portfolio-cv/dist"
 publishOrigin = "ui"
 commandOrigin = "ui"
 command = "npm run build"
