@@ -51,23 +51,6 @@ function Typewriter({ text, delay = 30 }: { text: string; delay?: number }) {
   );
 }
 
-function AnimatedCounter({ target, suffix = '' }: { target: number; suffix?: string }) {
-  const [count, setCount] = useState(0);
-  const { ref, visible } = useScrollReveal();
-  useEffect(() => {
-    if (!visible) return;
-    let start = 0;
-    const step = Math.ceil(target / 30);
-    const t = setInterval(() => {
-      start += step;
-      if (start >= target) { setCount(target); clearInterval(t); }
-      else setCount(start);
-    }, 40);
-    return () => clearInterval(t);
-  }, [visible, target]);
-  return <span ref={ref}>{count}{suffix}</span>;
-}
-
 function SkillTag({ name, detail, color }: { name: string; detail?: string; color: string }) {
   const [open, setOpen] = useState(false);
   const colors: Record<string, string> = {
@@ -99,19 +82,6 @@ export default function CV() {
   const { t, lang, setLang } = useLang();
   const { theme, toggle: toggleTheme } = useTheme();
   useScrollAnimations();
-
-  // Cifras reales desde el VPS (endpoint /stats) con fallback si no responde
-  const [stats, setStats] = useState({ containers: 47, certificaciones: 14, proyectos: 44 });
-  useEffect(() => {
-    fetch('https://devwebhook.bmops.tech/stats', { mode: 'cors' })
-      .then(r => r.ok ? r.json() : Promise.reject(new Error('http ' + r.status)))
-      .then(d => {
-        if (d && typeof d.containers === 'number' && typeof d.certificaciones === 'number' && typeof d.proyectos === 'number') {
-          setStats({ containers: d.containers, certificaciones: d.certificaciones, proyectos: d.proyectos });
-        }
-      })
-      .catch(() => { /* fallback silencioso a valores por defecto */ });
-  }, []);
 
   const skills = {
     dataBI: [
@@ -156,7 +126,17 @@ export default function CV() {
   };
 
   const certs = [
+    // ——— añadidos noviembre 2026 ———
+    { name: 'Modelos LLM potenciados con contexto: RAG y bases de datos vectoriales (LinkedIn Learning)', pdf: '/certificados/linkedin-rag-vectores.pdf', thumb: '/certificados/linkedin-rag-vectores.png' },
+    { name: 'AI Creation: First Steps (Higgsfield Academy)', pdf: '/certificados/higgsfield-ai-creation.png', thumb: '/certificados/higgsfield-ai-creation.png' },
+    { name: 'Data Science con IA (BIG school · BIGSEO)', pdf: '/certificados/data-science-ia-bigschool.pdf', thumb: '/certificados/data-science-ia-bigschool.png' },
+    { name: 'SEO con IA (BIGSEO · BIG school)', pdf: '/certificados/seo-con-ia-bigschool.pdf', thumb: '/certificados/seo-con-ia-bigschool.png' },
+    { name: 'Becoming a Forward Deployed Engineer: Bridging AI Products and Customer Outcomes (LinkedIn Learning)', pdf: '/certificados/linkedin-fde-bridging.png', thumb: '/certificados/linkedin-fde-bridging.png' },
+    { name: 'IA para Profesionales del Derecho (BIG school · DIC)', pdf: '/certificados/ia-derecho-bigschool.png', thumb: '/certificados/ia-derecho-bigschool.png' },
+    { name: 'Forward Deployed Engineering in the Age of AI (LinkedIn Learning)', pdf: '/certificados/linkedin-fde-age-ai.png', thumb: '/certificados/linkedin-fde-age-ai.png' },
     { name: 'QuickBooks Online Fundamentals Part 1 (Intuit)', pdf: '/certificados/quickbooks-online-fundamentals-pt1.pdf', thumb: '/certificados/quickbooks-online-fundamentals-pt1.png' },
+    { name: 'QuickBooks Online Fundamentals Part 2 (Intuit)', pdf: '/certificados/quickbooks-online-fundamentals-pt2.pdf', thumb: '/certificados/quickbooks-online-fundamentals-pt2.png' },
+    { name: 'MongoDB Basics for Students (MongoDB Skill)', pdf: 'https://www.credly.com/badges/215e7d03-a3f0-4179-a35f-e3e7d8dd6973', thumb: '/certificados/mongodb-basics-credly.png' },
     { name: 'AI Fluency: Framework & Foundations (Anthropic)', pdf: '/certificados/ai-fluency-anthropic.pdf', thumb: '/certificados/ai-fluency-anthropic.png' },
     { name: 'Introduction to Agent Skills (Anthropic)', pdf: '/certificados/introduction-agent-skills-anthropic.pdf', thumb: '/certificados/introduction-agent-skills-anthropic.png' },
     { name: 'Claude Code 101 (Anthropic)', pdf: '/certificados/claude-code-101-anthropic.pdf', thumb: '/certificados/claude-code-101-anthropic.png' },
@@ -239,12 +219,6 @@ export default function CV() {
                   className="inline-flex items-center gap-1 px-3 py-1.5 bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 rounded-full text-xs font-medium hover:bg-red-100 dark:hover:bg-red-900/30 transition-all border border-red-200 dark:border-red-800">
                   📥 Descargar CV (PDF)
                 </button>
-              </div>
-              {/* Stats row */}
-              <div className="flex gap-4 mt-4 text-sm">
-                <div><span className="font-bold text-blue-500"><AnimatedCounter target={stats.containers} suffix="+" /></span> <span className="text-gray-400">Containers</span></div>
-                <div><span className="font-bold text-emerald-500"><AnimatedCounter target={stats.certificaciones} suffix="+" /></span> <span className="text-gray-400">Certificaciones</span></div>
-                <div><span className="font-bold text-purple-500"><AnimatedCounter target={stats.proyectos} suffix="+" /></span> <span className="text-gray-400">Proyectos</span></div>
               </div>
             </div>
           </div>
